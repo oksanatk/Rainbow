@@ -28,7 +28,6 @@ public class InputGUI extends JFrame implements ActionListener {
 		this.add(myOpPad, BorderLayout.EAST);
 		myDisplay = new DisplayPanel(this);
 		this.add(myDisplay, BorderLayout.NORTH);
-		setup();
 	}
 
 	public void actionPerformed(ActionEvent event) {
@@ -44,7 +43,7 @@ public class InputGUI extends JFrame implements ActionListener {
 			
 		} else if (label.equals("Enter")) {
 			myDisplay.setNumber();
-			setNumber(myDisplay.getOutput());
+			setNumber(myDisplay.getOutput().substring(0,2));
 			
 			
 		} else {
@@ -92,34 +91,28 @@ public class InputGUI extends JFrame implements ActionListener {
 			out.println(contents);
 			out.close();
 		}catch(FileNotFoundException e){
-			System.out.println("gpio"+filename+" wasn't found. Please try again");
+			System.out.println(beginPath+"gpio"+filename+" wasn't found. Please try again");
 		}
 	}
 	
-	public void setup(){
-		for(int i=0;i<14;i++){
-			// print out in each direction file
-			printToFile(getGpioNum(i)+"/direction", "out");
-		}
-	}
 	
 	public void clearBoardAction(){
 		for(int i=0;i<14;i++){
-			// print 0 in value file
-			printToFile(getGpioNum(i)+"/value","0");	
+			// print in in direction file, turns led off
+			printToFile(getGpioNum(i)+"/direction","in");	
 		}
 	}
 	public void turnOnSegment(int seg){
-		// print 1 in value file
+		// print out in direction file
 		if (getGpioNum(seg)==-1){
 			System.out.println("Check wiring, port number "+seg+" not found.");
 		}else{
-			printToFile(getGpioNum(seg)+"/values","1");
+			printToFile(getGpioNum(seg)+"/direction","out");
 		}
 	}
 	
 	public void setNumber(String numberStr){
-		// get the needed 7 segments, print 1 in value files
+		// get the needed 7 segments, print out in direction files
 		numberStr = numberStr.trim();
 		if (numberStr.length()>2){
 			numberStr = numberStr.substring(0, 2);
