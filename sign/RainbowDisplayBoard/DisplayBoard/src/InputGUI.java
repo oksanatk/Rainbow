@@ -91,7 +91,7 @@ public class InputGUI extends JFrame implements ActionListener {
 			out.println(contents);
 			out.close();
 		}catch(FileNotFoundException e){
-			System.out.println(beginPath+"gpio"+filename+" wasn't found. Please try again");
+			System.out.println(beginPath+filename+" wasn't found. Please try again");
 		}
 	}
 	
