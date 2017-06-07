@@ -40,6 +40,7 @@ public class InputGUI extends JFrame implements ActionListener {
 			clearBoardAction();
 			
 		} else if (label.equals("Enter")) {
+			clearBoardAction();
 			myDisplay.setNumber();
 			if(myDisplay.getOutput().length()>2){	
 				setNumber(myDisplay.getOutput().substring(0,2));

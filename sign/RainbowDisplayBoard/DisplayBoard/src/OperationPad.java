@@ -16,7 +16,7 @@ public class OperationPad extends JPanel {
 		buttons[1] = new JButton("Clear");
 		buttons[2] = new JButton("Enter");
 		for(int i = 0; i < 3; i++){
-			buttons[i].setFont(new Font("Serif", Font.PLAIN, 40));
+			buttons[i].setFont(new Font("Serif", Font.PLAIN, 25));
 			buttons[i].addActionListener(parent);
 			this.add(buttons[i]);
 		}
