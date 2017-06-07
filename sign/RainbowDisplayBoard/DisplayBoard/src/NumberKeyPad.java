@@ -15,7 +15,7 @@ public class NumberKeyPad extends JPanel {
 		buttons = new JButton[10];
 		for(int i = 0; i < 10; i++){
 			buttons[i] = new JButton(""+i);
-			buttons[i].setFont(new Font("Serif", Font.PLAIN, 44));
+			buttons[i].setFont(new Font("Serif", Font.PLAIN, 25));
 			buttons[i].addActionListener(parent);
 		}
 		buttons[0].setPreferredSize(new Dimension(3000,100));

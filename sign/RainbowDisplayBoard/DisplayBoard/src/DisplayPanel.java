@@ -11,9 +11,9 @@ public class DisplayPanel extends JPanel {
 	private JTextField inputField;
 	public DisplayPanel(InputGUI dad){
 		outputField = new JTextField();
-		outputField.setFont(new Font("Serif", Font.BOLD, 50));
+		outputField.setFont(new Font("Serif", Font.BOLD, 30));
 		inputField = new JTextField();
-		inputField.setFont(new Font("Serif", Font.PLAIN, 40));
+		inputField.setFont(new Font("Serif", Font.PLAIN, 25));
 		outputField.setEditable(false);
 		inputField.setEditable(false);
 		JPanel top = new JPanel();
