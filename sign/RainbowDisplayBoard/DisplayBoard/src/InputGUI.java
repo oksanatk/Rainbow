@@ -3,9 +3,6 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 import java.awt.event.ActionEvent;
 
 import javax.swing.*;
@@ -28,6 +25,7 @@ public class InputGUI extends JFrame implements ActionListener {
 		this.add(myOpPad, BorderLayout.EAST);
 		myDisplay = new DisplayPanel(this);
 		this.add(myDisplay, BorderLayout.NORTH);
+		setup();
 	}
 
 	public void actionPerformed(ActionEvent event) {
@@ -54,11 +52,22 @@ public class InputGUI extends JFrame implements ActionListener {
 			myDisplay.addToInput(label);
 		} 
 	}
+	
+	public void setup(){
+		for(int i=0;i<14;i++){
+			printToFile(getGpioNum(i)+"/direction","out");
+		}
+	}
+	
 	public int getGpioNum(int num){
 		if (num==0){
-			return 116;
+			// return 116;
+			// ports 0 and 1 not turning off, use 14 and 15 in their place
+			return 150;
+			
 		}else if (num==1){
-			return 112;
+			// return 112;
+			return 162;
 		}else if (num==2){
 			return 20;
 		}else if (num==3){
@@ -102,16 +111,16 @@ public class InputGUI extends JFrame implements ActionListener {
 	
 	public void clearBoardAction(){
 		for(int i=0;i<14;i++){
-			// print in in direction file, turns led off
-			printToFile(getGpioNum(i)+"/direction","in");	
+			// print in in value file, turns led off
+			printToFile(getGpioNum(i)+"/value","0");	
 		}
 	}
 	public void turnOnSegment(int seg){
-		// print out in direction file
+		// print 1 in value file, turn segment on
 		if (getGpioNum(seg)==-1){
 			System.out.println("Check wiring, port number "+seg+" not found.");
 		}else{
-			printToFile(getGpioNum(seg)+"/direction","out");
+			printToFile(getGpioNum(seg)+"/value","1");
 		}
 	}
 	
